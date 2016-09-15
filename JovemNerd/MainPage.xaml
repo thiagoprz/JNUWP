@@ -1,0 +1,59 @@
+﻿<Page
+    x:Class="JovemNerd.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:JovemNerd"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    RequestedTheme="Dark">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Pivot Title="Jovem Nerd" Name="PivotMainPage" Margin="0,25,0,0">
+            <PivotItem Header="Nerdcast" Name="ListPivot">
+                <Grid>
+                    <ListView x:Name="listNerdcast" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="480" Grid.ColumnSpan="2" IsItemClickEnabled="True" ItemClick="listNerdcast_ItemClick">
+                        <ListView.ItemTemplate>
+
+                            <DataTemplate>
+                                <Grid>
+
+                                    <StackPanel>
+                                        <Image x:Name="imgEpisodeList" HorizontalAlignment="Left" Height="155" Margin="10,36,0,0" VerticalAlignment="Top" Width="340" Stretch="Fill" Source="{Binding image}" />
+                                        <TextBlock Text="{Binding title}"></TextBlock>
+                                        <TextBlock Text="{Binding pub_date}"></TextBlock>
+                                    </StackPanel>
+
+                                </Grid>
+                            </DataTemplate>
+
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="Player" Name="PlayerPivot">
+                <Grid>
+                    <Image x:Name="imgEpisode" HorizontalAlignment="Left" Height="155" Margin="10,36,0,0" VerticalAlignment="Top" Width="340" Stretch="Fill"/>
+                    <Button x:Name="btnDownload" Content="Download" HorizontalAlignment="Left" Margin="198,227,0,0" VerticalAlignment="Top" Click="btnDownload_Click"/>
+                    <Button x:Name="btnPlay" Content="Play" HorizontalAlignment="Left" Margin="56,227,0,0" VerticalAlignment="Top" Width="74" Click="btnPlay_Click"/>
+                    <Button x:Name="btPause" Content="Pause" HorizontalAlignment="Left" Margin="135,227,0,0" VerticalAlignment="Top" Click="btPause_Click"/>
+                    <Image x:Name="imgInsertions" HorizontalAlignment="Left" Height="351" Margin="10,279,-14,-110" VerticalAlignment="Top" Width="340"/>
+                    <Slider x:Name="sliderSeek" HorizontalAlignment="Left" Margin="10,189,0,0" VerticalAlignment="Top" Width="340" Height="33" Tapped="sliderSeek_Tapped"/>
+                    <MediaElement x:Name="PlayerMedia" AudioCategory="BackgroundCapableMedia" Visibility="Collapsed"></MediaElement>
+                    <TextBlock x:Name="episode_title" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Selecione um episódio" VerticalAlignment="Top"/>
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="Atualizar Feed" Name="UpdatePivot">
+                <Grid>
+                    <Button x:Name="btnUpdateNerdcast" Content="Atualizar Nerdcast" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="btnUpdateNerdcast_Click"/>
+                    <TextBlock x:Name="progressUpdate" HorizontalAlignment="Left" Margin="156,16,0,0" TextWrapping="Wrap" Text="Pendente" VerticalAlignment="Top"/>
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="Download" Name="DownloadPivot">
+                <Grid>
+                    <TextBlock x:Name="fileDownloadingName" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Nada para baixar." VerticalAlignment="Top" FontSize="12"/>
+                    <TextBlock x:Name="progressDownload" HorizontalAlignment="Left" Margin="306,10,0,0" TextWrapping="Wrap" Text="0%" VerticalAlignment="Top" FontWeight="Bold"/>
+                </Grid>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</Page>

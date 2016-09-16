@@ -487,10 +487,11 @@ namespace JovemNerd
         /// <seealso cref="loadNerdcast()"/>
         private async void updateNerdcast()
         {
-            progressUpdate.Text = "Carregando podcast...";
+            string progressText = " Carregando podcast... ";
             var client = new HttpClient();
             //string jsonString = await response.Content.ReadAsStringAsync();
             string jsonString = "[";
+            double percentageDownload = 0;
             for (uint i = 1; i < 59; i++)
             {
                 // Monta a URL para percorrer a paginação da api
@@ -505,6 +506,8 @@ namespace JovemNerd
                 // Remove o caracter "[" e "]" do início e fim do arquivo com o fim de unir os arrays do json
                 var page = fileContent.Substring(1, fileContent.Length - 1);
                 jsonString += page.Substring(0, page.Length - 1).Replace("null", "\"\""); // Substituição de valores nulos para não dar erro
+                percentageDownload += 1.69;
+                progressUpdate.Text = progressText + percentageDownload.ToString("#0");
             }
             jsonString += "]";
             
@@ -524,6 +527,12 @@ namespace JovemNerd
             progressUpdate.Text = "Atualizado em " + DateTime.Now.ToLocalTime().ToString();
             PivotMainPage.SelectedItem = ListPivot;
             loadNerdcast();
+        }
+
+        private void txtFilterTitle_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            string search = txtFilterTitle.Text;
+            listNerdcast.ItemsSource = episodes_list.Where((episode_filtered) => { return episode_filtered.title.Contains(search); });
         }
     }
 }

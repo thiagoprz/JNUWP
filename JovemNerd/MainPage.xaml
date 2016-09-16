@@ -11,7 +11,7 @@
         <Pivot Title="Jovem Nerd" Name="PivotMainPage" Margin="0,25,0,0">
             <PivotItem Header="Nerdcast" Name="ListPivot">
                 <Grid>
-                    <ListView x:Name="listNerdcast" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="480" Grid.ColumnSpan="2" IsItemClickEnabled="True" ItemClick="listNerdcast_ItemClick">
+                    <ListView x:Name="listNerdcast" HorizontalAlignment="Left" Height="545" VerticalAlignment="Top" Width="480" IsItemClickEnabled="True" ItemClick="listNerdcast_ItemClick" Margin="0,55,-144,-80">
                         <ListView.ItemTemplate>
 
                             <DataTemplate>
@@ -28,6 +28,7 @@
 
                         </ListView.ItemTemplate>
                     </ListView>
+                    <TextBox x:Name="txtFilterTitle" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="316" KeyDown="txtFilterTitle_KeyDown" PlaceholderText="Pesquisar..."/>
                 </Grid>
             </PivotItem>
             <PivotItem Header="Player" Name="PlayerPivot">
